@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
-import { Router } from './Components';
+import { Provider } from 'react-redux';
+import { Router } from '@Components';
+import { createStore } from 'redux';
 
 import './App.css';
+
+const store = createStore();
 
 class App extends Component {
   render() {
     return (
-      <Router />
+      <Provider store={}>
+        <Router />
+      </Provider>
     );
   }
 }

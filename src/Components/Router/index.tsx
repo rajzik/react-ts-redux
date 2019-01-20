@@ -1,13 +1,14 @@
 import React from 'react';
 import { Router } from '@reach/router';
-import { pages } from '../../Const';
+import { pages } from '@Constants';
+import { IPagesShape } from 'constants/pages';
+
+const RenderPages = (p: IPagesShape[]) => p.map(({ Component, ...rest }) => (
+    <Component {...rest} />
+));
 
 export default () => (
     <Router>
-        {
-            pages.map(({Component, ...rest}) => (
-                <Component {...rest} />
-            ))
-        }
+        {RenderPages(pages)}
     </Router>
-)
+);
