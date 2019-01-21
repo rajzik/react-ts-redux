@@ -1,4 +1,5 @@
 import React from 'react';
+import { TodoContainer } from '@containers';
 
 type Property = {
     [key: string]: any,
@@ -7,8 +8,6 @@ type Property = {
 export default (props: Property) => {
     console.log(props);
     return (
-        <div>
-            TODO:
-        </div>
+        <TodoContainer {...props} />
     )
 }

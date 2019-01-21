@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { Router } from '@Components';
-import { createStore } from 'redux';
+import { Router } from '@components';
+import { setupStore } from '@utils';
 
 import './App.css';
 
-const store = createStore();
+const store = setupStore();
 
 class App extends Component {
   render() {
     return (
-      <Provider store={}>
+      <Provider store={store}>
         <Router />
       </Provider>
     );

@@ -1,4 +1,4 @@
-import { Todo } from '@Pages';
+import { Todo } from '@pages';
 
 export interface IPagesShape {
     Component: any;

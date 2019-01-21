@@ -23,9 +23,14 @@
     "jsx": "preserve",
     "baseUrl": "./src",
     "paths": {
-      "@Components": ["components/index.tsx"],
-      "@Constants": ["constants/index.tsx"],
-      "@Pages": ["pages/index.tsx"]
+      "@components": ["components/index.tsx"],
+      "@containers": ["containers/index.tsx"],
+      "@constants": ["constants/index.tsx"],
+      "@pages": ["pages/index.tsx"],
+      "@sagas": ["sagas/index.tsx"],
+      "@reducers": ["reducers/index.tsx"],
+      "@actions": ["actions/index.tsx"],
+      "@utils": ["utils/index.tsx"],
     }
   },
   "include": [

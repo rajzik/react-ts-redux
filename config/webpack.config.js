@@ -262,11 +262,15 @@ module.exports = function(webpackEnv) {
       alias: {
         // Support React Native Web
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
-        "@Components": path.resolve(paths.appSrc, "components"),
-        "@Constants": path.resolve(paths.appSrc, "constants"),
-        "@Pages": path.resolve(paths.appSrc, "pages"),
         "react-native": "react-native-web",
-
+        "@components": path.resolve(paths.appSrc, "components"),
+        "@constants": path.resolve(paths.appSrc, "constants"),
+        "@containers": path.resolve(paths.appSrc, "containers"),
+        "@pages": path.resolve(paths.appSrc, "pages"),
+        "@sagas": path.resolve(paths.appSrc, "sagas"),
+        "@reducers": path.resolve(paths.appSrc, "reducers"),
+        "@actions": path.resolve(paths.appSrc, "actions"),
+        "@utils": path.resolve(paths.appSrc, "utils"),
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding
@@ -396,6 +400,8 @@ module.exports = function(webpackEnv) {
               exclude: cssModuleRegex,
               use: getStyleLoaders({
                 importLoaders: 1,
+                modules: true,
+                getLocalIdent: getCSSModuleLocalIdent,
                 sourceMap: isEnvProduction && shouldUseSourceMap,
               }),
               // Don't consider CSS imports dead code even if the
@@ -410,9 +416,9 @@ module.exports = function(webpackEnv) {
               test: cssModuleRegex,
               use: getStyleLoaders({
                 importLoaders: 1,
-                sourceMap: isEnvProduction && shouldUseSourceMap,
                 modules: true,
                 getLocalIdent: getCSSModuleLocalIdent,
+                sourceMap: isEnvProduction && shouldUseSourceMap,
               }),
             },
             // Opt-in support for SASS (using .scss or .sass extensions).
@@ -425,6 +431,8 @@ module.exports = function(webpackEnv) {
                 {
                   importLoaders: 2,
                   sourceMap: isEnvProduction && shouldUseSourceMap,
+                  modules: true,
+                  getLocalIdent: getCSSModuleLocalIdent,
                 },
                 "sass-loader",
               ),
