@@ -28,7 +28,7 @@ const reducer: Reducer<ITodoState> = (state = DefaultState, { type, payload }) =
       return {
         ...state,
         loading: false,
-        data: payload
+        data: payload.data
       }
     default:
       return state;

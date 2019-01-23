@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { IApplicationState, ITodoState } from 'reduxTypes';
+import { IApplicationState, ITodoState, ITodo } from 'reduxTypes';
 import { Dispatch } from 'redux';
 import { todoActions } from '@actions';
+import { TodoList } from '@components';
 
 interface IPropsFromState {
-  todo: ITodoState
+  todo: ITodoState;
 }
 
 interface IPropsFromDispatch {
@@ -13,17 +14,51 @@ interface IPropsFromDispatch {
 }
 
 type TodoContainerProps = IPropsFromState & IPropsFromDispatch;
-interface ITodoContainer{
-  children?: React.ReactNode
+interface ITodoContainer {
+  children?: React.ReactNode;
 }
 
-class TodoContainer extends Component<TodoContainerProps & ITodoContainer> {
-  constructor(props: TodoContainerProps & ITodoContainer){
+interface TodoContainerState {
+  data: ITodo[];
+}
+
+class TodoContainer extends Component<
+  TodoContainerProps & ITodoContainer,
+  TodoContainerState
+> {
+  state = {
+    data: []
+  };
+
+  constructor(props: TodoContainerProps & ITodoContainer) {
     super(props);
     props.fetchTodo();
   }
+
+  componentWillReceiveProps(nextProps: TodoContainerProps & ITodoContainer) {
+    this.setState({
+      data: nextProps.todo.data
+    });
+  }
+
+  doSomethingWithNewTodo = (item: ITodo) => {
+    const { data } = this.state;
+    const index = data.findIndex((x: ITodo) => x.id === item.id);
+    const newData: ITodo[] = data;
+    newData[index] = item;
+    this.setState({
+      data: newData,
+    });
+  };
+
   render() {
-    return (<div></div>);
+    const { data } = this.state;
+    return (
+      <TodoList
+        todos={data}
+        onTodoChange={this.doSomethingWithNewTodo}
+      />
+    );
   }
 }
 
