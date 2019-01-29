@@ -29,7 +29,7 @@ export default function TodoList({ todos, onTodoChange }: TodoListProps) {
     <div>
       {todos.map(item => (
         <TodoLine
-          key={item.id}
+          key={item._id}
           {...item}
           onDoneChange={CurryOnTodoChange(onTodoChange, item, 'done')}
           onTextChange={CurryOnTodoChange(onTodoChange, item, 'text')}

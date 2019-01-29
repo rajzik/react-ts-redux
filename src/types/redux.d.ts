@@ -3,7 +3,7 @@
 declare module "reduxTypes" {
   
   export interface ITodo {
-    id: string,
+    _id: string,
     text: string,
     done: boolean,
   }

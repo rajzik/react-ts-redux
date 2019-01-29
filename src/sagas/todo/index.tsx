@@ -5,7 +5,9 @@ import { TODO_REQUEST } from "@constants";
 
 function* handleFetch() {
   try {
-    const res = yield call(Axios, "data.json");
+    const res = yield call(Axios, "/api/todo", {
+      method: 'GET'
+    });
     if (res.error) {
       yield put(todoActions.fetchError(res.error));
     } else {

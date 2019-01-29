@@ -43,7 +43,7 @@ class TodoContainer extends Component<
 
   doSomethingWithNewTodo = (item: ITodo) => {
     const { data } = this.state;
-    const index = data.findIndex((x: ITodo) => x.id === item.id);
+    const index = data.findIndex((x: ITodo) => x._id === item._id);
     const newData: ITodo[] = data;
     newData[index] = item;
     this.setState({
