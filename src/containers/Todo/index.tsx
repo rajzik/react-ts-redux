@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { IApplicationState, ITodoState, ITodo } from 'reduxTypes';
+import { IApplicationState, ITodoState, ITodo, ITodoData } from 'reduxTypes';
 import { Dispatch } from 'redux';
 import { todoActions } from '@actions';
-import { TodoList } from '@components';
+import { TodoList, TodoCreate } from '@components';
 
 interface IPropsFromState {
   todo: ITodoState;
@@ -11,6 +11,7 @@ interface IPropsFromState {
 
 interface IPropsFromDispatch {
   fetchTodo: typeof todoActions.fetchRequest;
+  createTodo: typeof todoActions.postRequest;
 }
 
 type TodoContainerProps = IPropsFromState & IPropsFromDispatch;
@@ -53,12 +54,13 @@ class TodoContainer extends Component<
 
   render() {
     const { data } = this.state;
-    return (
+    return [
       <TodoList
         todos={data}
         onTodoChange={this.doSomethingWithNewTodo}
-      />
-    );
+      />,
+      <TodoCreate onSubmit={this.props.createTodo} />
+    ];
   }
 }
 
@@ -67,7 +69,8 @@ const mapStateToProps = ({ todo }: IApplicationState) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  fetchTodo: () => dispatch(todoActions.fetchRequest())
+  fetchTodo: () => dispatch(todoActions.fetchRequest()),
+  createTodo: (data: ITodoData) => dispatch(todoActions.postRequest(data))
 });
 
 export default connect(

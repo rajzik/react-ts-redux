@@ -2,10 +2,13 @@
 
 declare module "reduxTypes" {
   
-  export interface ITodo {
-    _id: string,
+
+  export interface ITodoData {
     text: string,
     done: boolean,
+  }
+  export interface ITodo extends ITodoData {
+    _id: string,
   }
   
   export interface ITodoState {
