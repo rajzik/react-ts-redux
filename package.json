@@ -133,7 +133,7 @@
     ]
   },
   "proxy": {
-    "/api": { 
+    "/api": {
       "target": "http://localhost:5555",
       "pathRewrite": {
         "^/api": "/"

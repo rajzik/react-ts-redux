@@ -1,9 +1,7 @@
 import Router from './Router';
-import TodoRead from "./TodoRead";
-import TodoEdit from './TodoEdit';
-import TodoLine from './TodoLine';
-import TodoList from './TodoList';
-import TodoCreate from './TodoCreate';
+import TodoList, { TodoLine, TodoRead, TodoEdit, TodoCreate } from './TodoList';
+
+
 
 export {
     Router,

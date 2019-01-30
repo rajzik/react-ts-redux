@@ -5,6 +5,8 @@ import { Dispatch } from 'redux';
 import { todoActions } from '@actions';
 import { TodoList, TodoCreate } from '@components';
 
+import styles from './todo.module.css';
+
 interface IPropsFromState {
   todo: ITodoState;
 }
@@ -26,7 +28,7 @@ interface TodoContainerState {
 class TodoContainer extends Component<
   TodoContainerProps & ITodoContainer,
   TodoContainerState
-> {
+  > {
   state = {
     data: []
   };
@@ -54,13 +56,13 @@ class TodoContainer extends Component<
 
   render() {
     const { data } = this.state;
-    return [
+    return <div className={styles.todo}>
       <TodoList
         todos={data}
         onTodoChange={this.doSomethingWithNewTodo}
       />,
       <TodoCreate onSubmit={this.props.createTodo} />
-    ];
+    </div>;
   }
 }
 

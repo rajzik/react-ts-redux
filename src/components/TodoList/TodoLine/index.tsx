@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { ITodo } from 'reduxTypes';
-import TodoEdit from '../TodoEdit';
-import TodoRead from '../TodoRead';
+import TodoEdit from './TodoEdit';
+import TodoRead from './TodoRead';
+
+import styles from './line.module.css';
 
 interface TodoLineProps extends ITodo {
   onTextChange: (event: React.FormEvent<HTMLInputElement>) => void;
@@ -14,7 +16,7 @@ export default function TodoLine({ onTextChange, onDoneChange, ...props }: TodoL
   const toggleEdit = () => changeEdit(!edit);
 
   return (
-    <div>
+    <div className={styles.todoLine}>
       {edit ? (
         <TodoEdit onChange={onTextChange} {...props} />
       ) : (
@@ -26,3 +28,8 @@ export default function TodoLine({ onTextChange, onDoneChange, ...props }: TodoL
     </div>
   );
 };
+
+export {
+  TodoEdit,
+  TodoRead, 
+}

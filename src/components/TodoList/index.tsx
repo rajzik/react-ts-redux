@@ -1,6 +1,7 @@
 import React from 'react';
 import { ITodo } from 'reduxTypes';
-import TodoLine from '../TodoLine';
+import TodoLine, { TodoEdit, TodoRead } from './TodoLine';
+import TodoCreate from './TodoCreate';
 
 interface TodoListProps {
   todos: ITodo[];
@@ -17,7 +18,7 @@ function CurryOnTodoChange(
   }: React.FormEvent<HTMLInputElement>) => {
     const newTodo = {
       ...item,
-      [property]: value === "on" ? checked: value
+      [property]: value === "on" ? checked : value
     };
 
     onTodoChange(newTodo);
@@ -26,7 +27,7 @@ function CurryOnTodoChange(
 
 export default function TodoList({ todos, onTodoChange }: TodoListProps) {
   return (
-    <div>
+    <>
       {todos.map(item => (
         <TodoLine
           key={item._id}
@@ -35,6 +36,13 @@ export default function TodoList({ todos, onTodoChange }: TodoListProps) {
           onTextChange={CurryOnTodoChange(onTodoChange, item, 'text')}
         />
       ))}
-    </div>
+    </>
   );
+}
+
+export {
+  TodoLine,
+  TodoEdit, 
+  TodoRead,
+  TodoCreate
 }

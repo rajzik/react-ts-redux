@@ -403,6 +403,7 @@ module.exports = function(webpackEnv) {
                 modules: true,
                 getLocalIdent: getCSSModuleLocalIdent,
                 sourceMap: isEnvProduction && shouldUseSourceMap,
+                camelCase: true,
               }),
               // Don't consider CSS imports dead code even if the
               // containing package claims to have no side effects.
@@ -419,6 +420,7 @@ module.exports = function(webpackEnv) {
                 modules: true,
                 getLocalIdent: getCSSModuleLocalIdent,
                 sourceMap: isEnvProduction && shouldUseSourceMap,
+                camelCase: true,
               }),
             },
             // Opt-in support for SASS (using .scss or .sass extensions).
