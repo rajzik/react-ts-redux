@@ -31,10 +31,13 @@
       "@reducers": ["reducers/index.tsx"],
       "@actions": ["actions/index.tsx"],
       "@utils": ["utils/index.tsx"],
-    }
+      "@i18n": ["i18n/index.tsx"],
+      "@context": ["context/index.tsx"],
+    },
   },
   "include": [
-    "src",
-    "global.d.ts"
+    "./src",
+    "./typings/*.d.ts",
+    "./global.d.ts"
   ]
 }

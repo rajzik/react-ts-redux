@@ -1,5 +1,3 @@
-
-
 declare module "reduxTypes" {
   
 
@@ -24,4 +22,5 @@ declare module "reduxTypes" {
   export interface IApplicationState {
     todo: ITodoState;
   }
+
 }

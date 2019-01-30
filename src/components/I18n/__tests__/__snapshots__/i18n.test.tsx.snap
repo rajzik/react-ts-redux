@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<I18n/> 1`] = `
+<div>
+  <span>
+    tohle nikdy nemen!
+  </span>
+</div>
+`;
+
+exports[`<I18n/> 2`] = `
+<div>
+  <span>
+    This never change!
+  </span>
+</div>
+`;

@@ -6,7 +6,6 @@ type Property = {
 };
 
 export default (props: Property) => {
-    console.log(props);
     return (
         <TodoContainer {...props} />
     )

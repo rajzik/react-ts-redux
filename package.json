@@ -6,12 +6,16 @@
     "@babel/core": "7.1.6",
     "@reach/router": "^1.2.1",
     "@svgr/webpack": "2.4.1",
+    "@types/enzyme": "^3.1.16",
     "@types/jest": "23.3.13",
     "@types/node": "10.12.18",
     "@types/reach__router": "^1.2.3",
     "@types/react": "16.7.20",
     "@types/react-dom": "16.0.11",
+    "@types/react-intl": "^2.3.15",
     "@types/react-redux": "^7.0.0",
+    "@types/react-test-renderer": "^16.0.3",
+    "@types/redux-mock-store": "^1.0.0",
     "axios": "^0.18.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "9.0.0",
@@ -51,9 +55,12 @@
     "react-app-polyfill": "^0.2.0",
     "react-dev-utils": "^7.0.1",
     "react-dom": "^16.8.0-alpha.1",
+    "react-intl": "^2.8.0",
     "react-redux": "^6.0.0",
+    "react-test-renderer": "^16.7.0",
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.7",
+    "redux-mock-store": "^1.5.3",
     "redux-saga": "^1.0.0",
     "resolve": "1.8.1",
     "sass-loader": "7.1.0",
@@ -71,7 +78,10 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "add-locale": "lingui add-locale",
+    "extract": "lingui extract",
+    "compile": "lingui compile"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -83,6 +93,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "enzyme": "^3.8.0",
     "tslint": "^5.12.1",
     "tslint-react": "^3.6.0"
   },
@@ -112,7 +123,18 @@
     ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web",
-      "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+      "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy",
+      "@actions": "<rootDir>/src/actions",
+      "@components": "<rootDir>/src/components",
+      "@constants": "<rootDir>/src/constants",
+      "@containers": "<rootDir>/src/containers",
+      "@pages": "<rootDir>/src/pages",
+      "@context": "<rootDir>/src/context",
+      "@i18n": "<rootDir>/src/i18n",
+      "@reducers": "<rootDir>/src/reducers",
+      "@sagas": "<rootDir>/src/sagas",
+      "@types": "<rootDir>/src/types",
+      "@utils": "<rootDir>/src/utils"
     },
     "moduleFileExtensions": [
       "web.js",
@@ -125,11 +147,6 @@
       "web.jsx",
       "jsx",
       "node"
-    ]
-  },
-  "babel": {
-    "presets": [
-      "react-app"
     ]
   },
   "proxy": {

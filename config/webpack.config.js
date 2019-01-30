@@ -271,6 +271,9 @@ module.exports = function(webpackEnv) {
         "@reducers": path.resolve(paths.appSrc, "reducers"),
         "@actions": path.resolve(paths.appSrc, "actions"),
         "@utils": path.resolve(paths.appSrc, "utils"),
+        "@context": path.resolve(paths.appSrc, "context"),
+        "@i18n": path.resolve(paths.appSrc, "i18n"),
+
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding

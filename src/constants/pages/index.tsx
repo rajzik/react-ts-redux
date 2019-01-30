@@ -1,4 +1,4 @@
-import { Todo } from '@pages';
+import { Todo, HelloPage } from '@pages';
 
 export interface IPagesShape {
     Component: any;
@@ -9,9 +9,14 @@ export interface IPagesShape {
 const pages = [
     {
         Component: Todo,
+        path: '/todo',
+        key: 'todo',
+    },
+    {
+        Component: HelloPage,
         path: '/',
         key: 'index',
-    },
+    }
 ];
 
 export default pages;
