@@ -1,6 +1,7 @@
-import { FunctionComponent } from 'react';
-import { Todo, HelloPage } from '@pages';
+import { FunctionComponent, lazy } from 'react';
 import { RouteComponentProps } from '@reach/router';
+
+
 
 export interface RouteExtendedProps extends RouteComponentProps {
   [key: string]: any;
@@ -14,12 +15,12 @@ export interface IPagesShape {
 
 const pages = [
   {
-    Component: Todo,
+    Component: lazy(() => import('../../pages/Todo')),
     path: '/todo',
     key: 'todo'
   },
   {
-    Component: HelloPage,
+    Component: lazy(() => import('../../pages/Hello')),
     path: '/',
     key: 'index'
   }

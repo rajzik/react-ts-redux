@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import { Router } from '@reach/router';
 import { pages } from '@constants';
 import { IPagesShape } from 'constants/pages';
 import { LanguageContext } from '@context';
-import { I18n } from '@components';
+import { I18n, Loading } from '@components';
 
 const RenderPages = (p: IPagesShape[]) =>
   p.map(({ Component, ...rest }) => <Component {...rest} />);
@@ -15,7 +15,9 @@ export default class RouterComponent extends Component {
     const language = this.context;
     return (
       <I18n language={language}>
-        <Router>{RenderPages(pages)}</Router>
+        <Suspense fallback={<Loading />}>
+          <Router>{RenderPages(pages)}</Router>
+        </Suspense>
       </I18n>
     );
   }

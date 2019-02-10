@@ -10,29 +10,7 @@ interface LanguageWrapState {
   language: Languages;
 }
 
-// export default function LanguageWrap({ children }: LanguageWrapProps) {
 
-//   const [language, setLanguage] = useState<Languages>('en');
-
-//   const onLanguageChange = ({
-//     currentTarget: { value }
-//   }: React.FormEvent<HTMLSelectElement>) => {
-//     const lang = value as Languages;
-//     setLanguage(lang);
-//   };
-
-//   return (
-//     <>
-//       <select onChange={onLanguageChange}>
-//         <option value="cs">cz</option>
-//         <option value="en" selected>en</option>
-//       </select>
-//       <LanguageContext.Provider value={language}>
-//         {children}
-//       </LanguageContext.Provider>
-//     </>
-//   );
-// }
 
 export default class LanguageWrap extends Component<
   LanguageWrapProps,
@@ -68,3 +46,28 @@ export default class LanguageWrap extends Component<
     );
   }
 }
+
+
+// export default function LanguageWrap({ children }: LanguageWrapProps) {
+
+//   const [language, setLanguage] = useState<Languages>('en');
+
+//   const onLanguageChange = ({
+//     currentTarget: { value }
+//   }: React.FormEvent<HTMLSelectElement>) => {
+//     const lang = value as Languages;
+//     setLanguage(lang);
+//   };
+
+//   return (
+//     <>
+//       <select onChange={onLanguageChange}>
+//         <option value="cs">cz</option>
+//         <option value="en" selected>en</option>
+//       </select>
+//       <LanguageContext.Provider value={language}>
+//         {children}
+//       </LanguageContext.Provider>
+//     </>
+//   );
+// }

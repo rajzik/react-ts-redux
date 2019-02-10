@@ -3,6 +3,8 @@ import TodoList, { TodoLine, TodoRead, TodoEdit, TodoCreate } from './TodoList';
 import LanguageWrap from './LanguageWrap';
 import I18n from './I18n';
 import T from './T';
+import Loading from './Loading';
+
 
 export {
   Router,
@@ -13,5 +15,6 @@ export {
   TodoCreate,
   LanguageWrap,
   I18n,
-  T
+  T,
+  Loading
 };
