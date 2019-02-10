@@ -1,18 +1,11 @@
 
 .todo-read {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template: "text done";
-    grid-gap: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
     align-items: center;
-    justify-items: center;
+    margin: 10px 20px;
 }
 
-.todo-text {
-    grid-template-areas: text;
-}
-
-.todo-done {
-    grid-template-areas: done;
-}
 

@@ -1,8 +1,14 @@
 import React, { FormEvent, Component } from 'react';
+import {
+  Button,
+  Card,
+  CardPrimaryContent,
+  CardActionButtons,
+  CardActions
+} from '@components';
 import { ITodo } from 'reduxTypes';
 import TodoEdit from './TodoEdit';
 import TodoRead from './TodoRead';
-
 import styles from './line.module.css';
 
 interface TodoLineProps extends ITodo {
@@ -21,8 +27,8 @@ export default class TodoLine extends Component<TodoLineProps, TodoLineState> {
     if (props.text !== state.initialText) {
       return {
         initialText: props.text,
-        text: props.text,
-      }
+        text: props.text
+      };
     }
     return null;
   }
@@ -32,7 +38,7 @@ export default class TodoLine extends Component<TodoLineProps, TodoLineState> {
     this.state = {
       edit: false,
       initialText: props.text,
-      text: props.text,
+      text: props.text
     };
   }
 
@@ -43,28 +49,36 @@ export default class TodoLine extends Component<TodoLineProps, TodoLineState> {
       onTextChange(text);
     }
     this.setState({
-      edit: !edit,
+      edit: !edit
     });
-  }
-  changeText = ({ currentTarget: { value }}: FormEvent<HTMLInputElement>) => {
+  };
+  changeText = ({ currentTarget: { value } }: FormEvent<HTMLInputElement>) => {
     this.setState({
-      text: value,
+      text: value
     });
-  }
+  };
   render() {
     const { edit, text } = this.state;
-    const { toggleEdit, changeText, props: { onDoneChange } } = this;
+    const {
+      toggleEdit,
+      changeText,
+      props: { onDoneChange }
+    } = this;
     return (
-      <div className={styles.todoLine}>
-        {edit ? (
-          <TodoEdit onChange={changeText} {...this.props} text={text} />
-        ) : (
-          <TodoRead onChange={onDoneChange} {...this.props} text={text} />
-        )}
-        <button type="button" onClick={toggleEdit}>
-          {edit ? 'save' : 'edit'}
-        </button>
-      </div>
+      <Card className={styles.todoLine}>
+        <CardPrimaryContent>
+          {edit ? (
+            <TodoEdit onChange={changeText} {...this.props} text={text} />
+          ) : (
+            <TodoRead onChange={onDoneChange} {...this.props} text={text} />
+          )}
+        </CardPrimaryContent>
+        <CardActions>
+          <CardActionButtons>
+            <Button onClick={toggleEdit}>{edit ? 'save' : 'edit'}</Button>
+          </CardActionButtons>
+        </CardActions>
+      </Card>
     );
   }
 }

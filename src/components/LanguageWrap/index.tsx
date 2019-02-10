@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { LanguageContext } from '@context';
 import { Languages } from 'langTypes';
+import { Select } from '@components';
 
 interface LanguageWrapProps {
   children: React.ReactNode;
@@ -9,8 +10,6 @@ interface LanguageWrapProps {
 interface LanguageWrapState {
   language: Languages;
 }
-
-
 
 export default class LanguageWrap extends Component<
   LanguageWrapProps,
@@ -35,10 +34,10 @@ export default class LanguageWrap extends Component<
     const { language } = this.state;
     return (
       <>
-        <select onChange={this.onLanguageChange} value={language}>
+        <Select onChange={this.onLanguageChange} value={language}>
           <option value="cs">cz</option>
           <option value="en">en</option>
-        </select>
+        </Select>
         <LanguageContext.Provider value={language}>
           {children}
         </LanguageContext.Provider>
@@ -46,7 +45,6 @@ export default class LanguageWrap extends Component<
     );
   }
 }
-
 
 // export default function LanguageWrap({ children }: LanguageWrapProps) {
 

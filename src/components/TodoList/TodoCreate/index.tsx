@@ -1,5 +1,14 @@
 import React, { Component, ChangeEvent } from 'react';
 import { ITodoData } from 'reduxTypes';
+import {
+  Card,
+  Button,
+  TextField,
+  Input,
+  CardActions,
+  CardActionButtons,
+  CardPrimaryContent
+} from '@components';
 
 interface ITodoExtended {
   onSubmit: (data: ITodoData) => void;
@@ -38,10 +47,22 @@ export default class TodoCreate extends Component<
   render() {
     const { value } = this.state;
     return (
-      <div>
-        <input type="text" value={value} onChange={this.onValueChange} />
-        <button onClick={this.submit}>Create new todo</button>
-      </div>
+      <Card>
+        <CardPrimaryContent>
+          <TextField label="Create new Todo">
+            <Input<HTMLInputElement>
+              value={value}
+              onChange={this.onValueChange}
+            />
+          </TextField>
+        </CardPrimaryContent>
+
+        <CardActions>
+          <CardActionButtons>
+            <Button onClick={this.submit}>Create new todo</Button>
+          </CardActionButtons>
+        </CardActions>
+      </Card>
     );
   }
 }

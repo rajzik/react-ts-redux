@@ -1,6 +1,3 @@
 .todo-line {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-gap: 10px;
-    height: 50px;
+    margin: 25px;
 }
