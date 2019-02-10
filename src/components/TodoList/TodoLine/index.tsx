@@ -53,7 +53,6 @@ export default class TodoLine extends Component<TodoLineProps, TodoLineState> {
   }
   render() {
     const { edit, text } = this.state;
-    console.log(text);
     const { toggleEdit, changeText, props: { onDoneChange } } = this;
     return (
       <div className={styles.todoLine}>
