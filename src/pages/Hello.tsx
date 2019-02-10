@@ -9,7 +9,7 @@ export default function HelloPage() {
         <T>
           this is test of translation
         </T>
-        <T id="test" />
+        
       </p>
     </div>
   );

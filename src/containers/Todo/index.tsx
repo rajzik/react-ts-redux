@@ -14,6 +14,8 @@ interface IPropsFromState {
 interface IPropsFromDispatch {
   fetchTodo: typeof todoActions.fetchRequest;
   createTodo: typeof todoActions.postRequest;
+  updateTodo: typeof todoActions.putRequest;
+  patchTodo: typeof todoActions.patchRequest;
 }
 
 type TodoContainerProps = IPropsFromState & IPropsFromDispatch;
@@ -22,46 +24,28 @@ interface ITodoContainer {
 }
 
 interface TodoContainerState {
-  data: ITodo[];
 }
 
 class TodoContainer extends Component<
   TodoContainerProps & ITodoContainer,
   TodoContainerState
   > {
-  state = {
-    data: []
-  };
 
   constructor(props: TodoContainerProps & ITodoContainer) {
     super(props);
     props.fetchTodo();
   }
 
-  componentWillReceiveProps(nextProps: TodoContainerProps & ITodoContainer) {
-    this.setState({
-      data: nextProps.todo.data
-    });
-  }
-
-  doSomethingWithNewTodo = (item: ITodo) => {
-    const { data } = this.state;
-    const index = data.findIndex((x: ITodo) => x._id === item._id);
-    const newData: ITodo[] = data;
-    newData[index] = item;
-    this.setState({
-      data: newData,
-    });
-  };
 
   render() {
-    const { data } = this.state;
+    const { todo: { data }, createTodo, updateTodo, patchTodo } = this.props;
     return <div className={styles.todo}>
       <TodoList
         todos={data}
-        onTodoChange={this.doSomethingWithNewTodo}
+        onTodoChange={updateTodo}
+        onDoneChange={patchTodo}
       />,
-      <TodoCreate onSubmit={this.props.createTodo} />
+      <TodoCreate onSubmit={createTodo} />
     </div>;
   }
 }
@@ -72,7 +56,9 @@ const mapStateToProps = ({ todo }: IApplicationState) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   fetchTodo: () => dispatch(todoActions.fetchRequest()),
-  createTodo: (data: ITodoData) => dispatch(todoActions.postRequest(data))
+  createTodo: (data: ITodoData) => dispatch(todoActions.postRequest(data)),
+  updateTodo: (data: ITodo) => dispatch(todoActions.putRequest(data)),
+  patchTodo: (data: ITodo) => dispatch(todoActions.patchRequest(data)),
 });
 
 export default connect(

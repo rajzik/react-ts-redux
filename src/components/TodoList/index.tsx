@@ -6,43 +6,45 @@ import TodoCreate from './TodoCreate';
 interface TodoListProps {
   todos: ITodo[];
   onTodoChange: (newTodo: ITodo) => void;
+  onDoneChange: (newTodo: ITodo) => void;
 }
 
 function CurryOnTodoChange(
   onTodoChange: (newTodo: ITodo) => void,
-  item: ITodo,
-  property: 'text' | 'done'
+  item: ITodo
 ) {
-  return ({
-    currentTarget: { value, checked }
-  }: React.FormEvent<HTMLInputElement>) => {
+  return (text: string) => {
     const newTodo = {
       ...item,
-      [property]: value === "on" ? checked : value
+      text
     };
-
     onTodoChange(newTodo);
   };
 }
 
-export default function TodoList({ todos, onTodoChange }: TodoListProps) {
+function CurryOnTodoDone(onDoneChange: (newTodo: ITodo) => void, item: ITodo) {
+  return () => {
+    onDoneChange(item);
+  };
+}
+
+export default function TodoList({
+  todos,
+  onTodoChange,
+  onDoneChange
+}: TodoListProps) {
   return (
     <>
       {todos.map(item => (
         <TodoLine
           key={item._id}
           {...item}
-          onDoneChange={CurryOnTodoChange(onTodoChange, item, 'done')}
-          onTextChange={CurryOnTodoChange(onTodoChange, item, 'text')}
+          onDoneChange={CurryOnTodoDone(onDoneChange, item)}
+          onTextChange={CurryOnTodoChange(onTodoChange, item)}
         />
       ))}
     </>
   );
 }
 
-export {
-  TodoLine,
-  TodoEdit, 
-  TodoRead,
-  TodoCreate
-}
+export { TodoLine, TodoEdit, TodoRead, TodoCreate };
