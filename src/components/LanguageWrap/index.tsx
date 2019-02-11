@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import { LanguageContext } from '@context';
 import { Languages } from 'langTypes';
 import { Select } from '@components';
